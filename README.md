@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+#banner.js componnets code
 
-## Getting Started
+1. fetch the product by index no
+   [
+   "use client"
+   import { useState, useEffect } from 'react';
 
-First, run the development server:
+const Banner = () => {
+const [product, setProduct] = useState(null);
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const response = await fetch('/api/products'); // Assuming your API endpoint for fetching a specific product is `/api/products/:id`
+                const data = await response.json();
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+                setProduct(data.product[0]);
+            } catch (error) {
+                console.error('Error fetching product:', error);
+            }
+        };
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+        fetchProduct();
+    }, []);
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+    return (
+        <div>
+            {product ? (
+                <>
+                    <h2>{product.title}</h2>
+                    <p>{product.description}</p>
+                    <p>Inr{product.price}</p>
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+                </>
+            ) : (
+                <p>Loading...</p>
+            )}
+        </div>
+    );
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+};
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+export default Banner;
+]
 
-## Deploy on Vercel
+2. fetch the product by index but by axios
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[
+"use client"
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+const Banner = () => {
+const [product, setProduct] = useState(null);
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const response = await axios.get('/api/products'); // Assuming your API endpoint for fetching products is `/api/products`
+                const data = response.data;
+
+                setProduct(data.product[0]);
+            } catch (error) {
+                console.error('Error fetching product:', error);
+            }
+        };
+
+        fetchProduct();
+    }, []);
+
+    return (
+        <div>
+            {product ? (
+                <>
+                    <h2>{product.title}</h2>
+                    <p>{product.description}</p>
+                    <p>axios{product.price}</p>
+                </>
+            ) : (
+                <p>Loading...</p>
+            )}
+        </div>
+    );
+
+};
+
+export default Banner;
+
+]
+
+3. fetch product by product id axios
+
+["use client"
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const Banner = () => {
+const [product, setProduct] = useState(null);
+
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const response = await axios.get('/api/products'); // Assuming your API endpoint for fetching products is `/api/products`
+                console.log("response:", response)
+                const data = response.data;
+                console.log("data:", data)
+                const productById = data.product.find(item => item._id === '65d5cfa38fe4c5f8dc6f6824');
+                console.log("productById", productById)
+                setProduct(productById);
+            } catch (error) {
+                console.error('Error fetching product:', error);
+            }
+        };
+
+        fetchProduct();
+    }, []);
+
+    return (
+        <div>
+            {product ? (
+                <>
+                    <h2>{product.title}</h2>
+                    <p>{product.description}</p>
+                    <p>axios{product.price}</p>
+                </>
+            ) : (
+                <p>Loading...</p>
+            )}
+        </div>
+    );
+
+};
+
+export default Banner;]
