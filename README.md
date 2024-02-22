@@ -1,6 +1,6 @@
-## banner.js componnets code
+# banner.js componnets code
 
-# 1. fetch the product by index no
+## 1. fetch the product by index no
 
 [
 "use client"
@@ -45,7 +45,7 @@ const [product, setProduct] = useState(null);
 export default Banner;
 ]
 
-# 2. fetch the product by index but by axios
+## 2. fetch the product by index but by axios
 
 [
 "use client"
@@ -90,7 +90,7 @@ export default Banner;
 
 ]
 
-# 3. fetch product by product id axios
+## 3. fetch product by product id axios
 
 ["use client"
 import { useState, useEffect } from 'react';
@@ -136,4 +136,4 @@ const [product, setProduct] = useState(null);
 export default Banner;
 ]
 
-## product components
+# product components
