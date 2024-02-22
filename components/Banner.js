@@ -13,10 +13,10 @@ const Banner = () => {
             try {
                 const response = await axios.get('/api/products'); // Assuming your API endpoint for fetching products is `/api/products`
                 console.log("response:", response)
-                const data = response.data;
-                console.log("data:", data)
+                // const data = response.data;
+                // console.log("data:", data)
                 const productById = data.product.find(item => item._id === '65d5cfa38fe4c5f8dc6f6824');
-                console.log("productById", productById)
+                // console.log("productById", productById)
                 setProduct(productById);
             } catch (error) {
                 console.error('Error fetching product:', error);
