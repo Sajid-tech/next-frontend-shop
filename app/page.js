@@ -1,4 +1,5 @@
 import Banner from "@/components/Banner";
+import Products from "@/components/Products";
 
 export default function Home() {
   return (
@@ -6,7 +7,8 @@ export default function Home() {
 
 
       <Banner />
-      <hr class="my-1 h-px border-0 bg-gray-300" />
+      <hr className="my-1 h-px border-0 bg-gray-300" />
+      <Products />
     </main>
   );
 }
