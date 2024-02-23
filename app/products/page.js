@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 import Spinner from "@/components/Spinner";
 import Link from "next/link";
@@ -17,7 +18,6 @@ const Products = () => {
 
 
     const [loading, setLoading] = useState(true);
-    const [searchQuery, setSearchQuery] = useState("");
     const [getProduct, setGetProduct] = useState([]);
 
 
@@ -51,21 +51,7 @@ const Products = () => {
     }, []);
 
 
-    // const filterProducts = () => {
-    //     if (searchQuery === "") {
-    //         setGetProduct(data.product);
-    //     } else {
-    //         const lowerCaseQuery = searchQuery.toLowerCase();
-    //         const filtered = data.product.filter((product) =>
-    //             product.title.toLowerCase().includes(lowerCaseQuery)
-    //         );
-    //         setGetProduct(filtered);
-    //     }
-    // };
 
-    // useEffect(() => {
-    //     filterProducts();
-    // }, [searchQuery]);
 
 
 
@@ -80,8 +66,7 @@ const Products = () => {
                     <input
                         type="text"
                         placeholder="Search products"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+
                         className="mb-4 px-4 py-2 rounded-lg border border-gray-300 w-full" // Increased the input size
                     />
 
@@ -109,7 +94,7 @@ const Products = () => {
                                             </div>
 
                                             <div className="relative p-3 border-t">
-                                                <Link href="/">
+                                                <Link href={`/products/` + product._id}>
                                                     <h3 className="text-md text-gray-700 group-hover:underline group-hover:underline-offset-4 truncate">
                                                         {product.title}
                                                     </h3>
