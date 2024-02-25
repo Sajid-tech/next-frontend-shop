@@ -1,11 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import { CartContext } from '@/utils/CartContext';
+import toast from 'react-hot-toast';
+
+
+
 
 const Banner = () => {
     const [product, setProduct] = useState(null);
+
+    const { addProduct } = useContext(CartContext)
+    function addItemToCart() {
+        addProduct(product._id);
+        toast.success("Item added to cart")
+    }
 
 
     useEffect(() => {
@@ -55,7 +66,10 @@ const Banner = () => {
                                     </div>
                                 </div>
                                 <div className="flex gap-4 items-center max-sm:justify-center max-sm:mt-6">
-                                    <button className="mt-6 inline-block rounded-md border border-transparent bg-primary px-6 py-3 text-center font-medium text-white hover:text-accent" >
+                                    <button
+                                        onClick={addItemToCart}
+
+                                        className="mt-6 inline-block rounded-md border border-transparent bg-primary px-6 py-3 text-center font-medium text-white hover:text-accent" >
                                         Add to cart
                                     </button>
                                     <Link href="/" className="mt-6 inline-block rounded-md  bg-transparent border border-accent px-6 py-3 text-center font-medium text-accent hover:text-primary hover:border-primary">

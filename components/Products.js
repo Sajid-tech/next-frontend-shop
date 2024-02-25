@@ -1,9 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import { CartContext } from '@/utils/CartContext';
+import toast from 'react-hot-toast';
 
 // Utility function to format price with a comma for thousands
 const formatPrice = (price) => {
@@ -11,6 +13,9 @@ const formatPrice = (price) => {
 };
 
 const Products = () => {
+
+    const { addProduct } = useContext(CartContext)
+
 
 
     const [getProduct, setGetProduct] = useState([]);
@@ -68,7 +73,7 @@ const Products = () => {
                                     </div>
 
                                     <div className="relative  p-3 border-t">
-                                        <Link href={'/'}>
+                                        <Link href={'/products/' + product._id}>
                                             <h3
                                                 className="text-md text-gray-700 group-hover:underline group-hover:underline-offset-4 truncate"
                                             >
@@ -76,7 +81,13 @@ const Products = () => {
                                             </h3>
                                         </Link>
 
-                                        <div className="mt-1.5 flex items-center justify-between text-text">
+                                        <div
+                                            onClick={() => {
+                                                addProduct(product._id)
+                                                toast.success("Item added to cart")
+                                            }}
+
+                                            className="mt-1.5 flex items-center justify-between text-text">
                                             <p className="tracking-wide text-primary">	&#8377; {formatPrice(product.price)}</p>
 
 

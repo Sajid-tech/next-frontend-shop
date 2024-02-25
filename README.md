@@ -1,252 +1,40 @@
-# banner.js componnets code
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## 1. fetch the product by index no
+## Getting Started
 
-[
-"use client"
-import { useState, useEffect } from 'react';
+First, run the development server:
 
-const Banner = () => {
-const [product, setProduct] = useState(null);
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const response = await fetch('/api/products'); // Assuming your API endpoint for fetching a specific product is `/api/products/:id`
-                const data = await response.json();
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-                setProduct(data.product[0]);
-            } catch (error) {
-                console.error('Error fetching product:', error);
-            }
-        };
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-        fetchProduct();
-    }, []);
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-    return (
-        <div>
-            {product ? (
-                <>
-                    <h2>{product.title}</h2>
-                    <p>{product.description}</p>
-                    <p>Inr{product.price}</p>
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-                </>
-            ) : (
-                <p>Loading...</p>
-            )}
-        </div>
-    );
+## Learn More
 
-};
+To learn more about Next.js, take a look at the following resources:
 
-export default Banner;
-]
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## 2. fetch the product by index but by axios
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-[
-"use client"
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+## Deploy on Vercel
 
-const Banner = () => {
-const [product, setProduct] = useState(null);
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const response = await axios.get('/api/products'); // Assuming your API endpoint for fetching products is `/api/products`
-                const data = response.data;
-
-                setProduct(data.product[0]);
-            } catch (error) {
-                console.error('Error fetching product:', error);
-            }
-        };
-
-        fetchProduct();
-    }, []);
-
-    return (
-        <div>
-            {product ? (
-                <>
-                    <h2>{product.title}</h2>
-                    <p>{product.description}</p>
-                    <p>axios{product.price}</p>
-                </>
-            ) : (
-                <p>Loading...</p>
-            )}
-        </div>
-    );
-
-};
-
-export default Banner;
-
-]
-
-## 3. fetch product by product id axios
-
-["use client"
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-
-const Banner = () => {
-const [product, setProduct] = useState(null);
-
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const response = await axios.get('/api/products'); // Assuming your API endpoint for fetching products is `/api/products`
-                console.log("response:", response)
-                const data = response.data;
-                console.log("data:", data)
-                const productById = data.product.find(item => item._id === '65d5cfa38fe4c5f8dc6f6824');
-                console.log("productById", productById)
-                setProduct(productById);
-            } catch (error) {
-                console.error('Error fetching product:', error);
-            }
-        };
-
-        fetchProduct();
-    }, []);
-
-    return (
-        <div>
-            {product ? (
-                <>
-                    <h2>{product.title}</h2>
-                    <p>{product.description}</p>
-                    <p>axios{product.price}</p>
-                </>
-            ) : (
-                <p>Loading...</p>
-            )}
-        </div>
-    );
-
-};
-
-export default Banner;
-]
-
-# product components get and sort by 5 five product
-
-[
-/_ eslint-disable @next/next/no-img-element _/
-"use client"
-import React from 'react'
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import Link from 'next/link';
-
-// Utility function to format price with a comma for thousands
-const formatPrice = (price) => {
-return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-};
-
-const Products = () => {
-
-    const [getProduct, setGetProduct] = useState([]);
-
-
-
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const response = await axios.get('/api/products'); // Assuming your API endpoint for fetching products is `/api/products`
-                console.log("response:", response)
-                const data = response.data;
-                console.log("dataof all:", data)
-
-                //sort the product
-                const sortProduct = data.product.slice(0, 5);
-
-
-                setGetProduct(sortProduct);
-
-
-            } catch (error) {
-                console.error('Error fetching product:', error);
-            }
-        };
-
-
-        fetchProduct();
-        // console.log("getset", getProduct)
-    }, []);
-
-
-    return (
-        <div className="bg-white">
-            <div className="mx-auto px-4 py-6">
-                <h2 className="text-2xl font-bold tracking-tight text-text">Our Latest Products</h2>
-
-                <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-5 xl:gap-x-8">
-                    {getProduct?.length > 0 && getProduct.map((product) => (
-                        <div key={product.id} className="group relative">
-                            <div className="group block overflow-hidden border border-accent rounded-xl border-opacity-10">
-                                <div className="p-1">
-                                    <div className="relative h-[300px] sm:h-[300px]">
-                                        <img
-                                            src={product.images[0]}
-                                            alt=""
-                                            className="absolute inset-0 h-full w-full object-contain opacity-100 group-hover:opacity-0"
-                                        />
-
-                                        <img
-                                            src={product.images[1]}
-                                            alt=""
-                                            className="absolute inset-0 h-full w-full object-contain opacity-0 group-hover:opacity-100"
-                                        />
-                                    </div>
-
-                                    <div className="relative  p-3 border-t">
-                                        <Link href={'/'}>
-                                            <h3
-                                                className="text-md text-gray-700 group-hover:underline group-hover:underline-offset-4 truncate"
-                                            >
-                                                {product.title}
-                                            </h3>
-                                        </Link>
-
-                                        <div className="mt-1.5 flex items-center justify-between text-text">
-                                            <p className="tracking-wide text-primary">	&#8377; {formatPrice(product.price)}</p>
-
-
-                                            <button type="button" class="flex items-center divide-x rounded-lg border border-primary bg-white text-center text-md font-medium text-secondary-700 shadow-sm hover:bg-gray-100">
-                                                <div class="flex items-center space-x-2 py-2.5 px-3">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                                                    </svg>
-
-
-                                                    <span>Add</span>
-                                                </div>
-                                                {/* <div class="py-2.5 px-3">18</div> */}
-                                            </button>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    )
-
-}
-
-export default Products
-]
-
-#
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

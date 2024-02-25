@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
@@ -14,20 +15,20 @@ const Newsletter = () => {
                         <input type="email" placeholder="Enter your email address" className="rounded-md px-4 py-3 bg-white border border-gray-300 focus:outline-none focus:border-sky-500" />
                         <button className="rounded-md bg-sky-500 py-3 px-6 text-white font-medium hover:bg-sky-600 focus:outline-none">Subscribe</button>
                     </form>
-                    <p className="text-sm text-gray-500 mt-4">We will handle your data with care. See our <a href="/" className="text-sky-500 hover:underline">Privacy Policy</a>.</p>
+                    <p className="text-sm text-gray-500 mt-4">We will handle your data with care. See our <Link href="/" className="text-sky-500 hover:underline">Privacy Policy</Link>.</p>
                     <div className="flex items-center gap-4 mt-8">
-                        <a href="/" className="text-gray-600 hover:text-sky-500 transition-colors duration-200">
+                        <Link href="/" className="text-gray-600 hover:text-sky-500 transition-colors duration-200">
                             <FaFacebookF size={24} />
-                        </a>
-                        <a href="/" className="text-gray-600 hover:text-sky-500 transition-colors duration-200">
+                        </Link>
+                        <Link href="/" className="text-gray-600 hover:text-sky-500 transition-colors duration-200">
                             <FaTwitter size={24} />
-                        </a>
-                        <a href="/" className="text-gray-600 hover:text-sky-500 transition-colors duration-200">
+                        </Link>
+                        <Link href="/" className="text-gray-600 hover:text-sky-500 transition-colors duration-200">
                             <FaInstagram size={24} />
-                        </a>
-                        <a href="/" className="text-gray-600 hover:text-sky-500 transition-colors duration-200">
+                        </Link>
+                        <Link href="/" className="text-gray-600 hover:text-sky-500 transition-colors duration-200">
                             <FaLinkedinIn size={24} />
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
