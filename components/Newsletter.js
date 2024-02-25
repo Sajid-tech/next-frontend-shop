@@ -4,12 +4,14 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/f
 
 const Newsletter = () => {
     return (
-        <div className="newsletter-section bg-cover min-h-[400px] bg-center bg-no-repeat flex items-center justify-center  " style={{
-            backgroundImage: `url('/footer.jpeg')`
-        }}>
+        <div className="newsletter-section bg-cover min-h-[400px] bg-center bg-no-repeat flex items-center justify-center  "
+            style={{
+                backgroundImage: `url('/footer.jpeg') `,
+
+            }}>
             <div className="container mx-auto px-4 max-w-3xl">
                 <div className="newsletter-content flex flex-col items-center text-center">
-                    <h4 className="text-lg font-medium text-gray-700 mb-4">Newsletter</h4>
+                    <h4 className=" text-2xl font-medium text-sky-700 mb-4">Newsletter</h4>
                     <h2 className="text-2xl font-semibold text-gray-900 mb-8">Sign up for latest updates and offers</h2>
                     <form className="flex flex-col items-center gap-2 text-gray-700">
                         <input type="email" placeholder="Enter your email address" className="rounded-md px-4 py-3 bg-white border border-gray-300 focus:outline-none focus:border-sky-500" />
@@ -26,7 +28,7 @@ const Newsletter = () => {
                         <Link href="/" className="text-gray-600 hover:text-sky-500 transition-colors duration-200">
                             <FaInstagram size={24} />
                         </Link>
-                        <Link href="/" className="text-gray-600 hover:text-sky-500 transition-colors duration-200">
+                        <Link href="" className="text-gray-600 hover:text-sky-500 transition-colors duration-200">
                             <FaLinkedinIn size={24} />
                         </Link>
                     </div>

@@ -16,6 +16,7 @@ export default function App({ Component, pageProps }) {
     <Provider>
       <CartContextProvider>
         <main className={`${inter.className}`}>
+
           <Header />
           <div className="min-h-screen max-w-screen-2xl mx-auto">
             <Component {...pageProps} />
@@ -23,6 +24,7 @@ export default function App({ Component, pageProps }) {
               position="top-center"
               reverseOrder={false}
             />
+
           </div>
 
         </main>

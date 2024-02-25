@@ -65,7 +65,7 @@ const Collection = () => {
                                         </header>
 
                                         <Link
-                                            href="/"
+                                            href="/products"
                                             className="inline-block px-12 py-3 mt-8 text-md font-medium text-text transition  border border-accent rounded hover:text-primary duration-75 hover:border-primary focus:outline-none focus:ring"
                                         >
                                             Shop All
