@@ -1,9 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'next/navigation';
+import { CartContext } from '@/utils/CartContext';
+import toast from 'react-hot-toast';
 
 
 
@@ -19,6 +21,9 @@ const formatPrice = (price) => {
 
 
 const ProductPage = () => {
+
+
+    const { addProduct } = useContext(CartContext)
 
     const [product, setProduct] = useState(null);
     const params = useParams()
@@ -125,6 +130,11 @@ const ProductPage = () => {
                         </div>
                         <div className="w-full">
                             <button
+
+                                onClick={() => {
+                                    addProduct(product._id)
+                                    toast.success("Item added to cart")
+                                }}
                                 className="bg-primary text-white py-2 px-4 mt-4 rounded-md hover:bg-primary-dark w-full"
 
                             >

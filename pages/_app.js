@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import Provider from "@/components/Provider";
 import "@/styles/globals.css";
 import { CartContextProvider } from "@/utils/CartContext";
 import { Poppins } from 'next/font/google';
@@ -12,19 +13,21 @@ const inter = Poppins({
 
 export default function App({ Component, pageProps }) {
   return (
-    <CartContextProvider>
-      <main className={`${inter.className}`}>
-        <Header />
-        <div className="min-h-screen max-w-screen-2xl mx-auto">
-          <Component {...pageProps} />
-          <Toaster
-            position="top-center"
-            reverseOrder={false}
-          />
-        </div>
+    <Provider>
+      <CartContextProvider>
+        <main className={`${inter.className}`}>
+          <Header />
+          <div className="min-h-screen max-w-screen-2xl mx-auto">
+            <Component {...pageProps} />
+            <Toaster
+              position="top-center"
+              reverseOrder={false}
+            />
+          </div>
 
-      </main>
-    </CartContextProvider>
+        </main>
+      </CartContextProvider>
+    </Provider>
 
 
   )

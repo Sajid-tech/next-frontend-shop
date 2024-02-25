@@ -1,5 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 import { CartContext } from '@/utils/CartContext'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
@@ -8,6 +10,8 @@ const Header = () => {
 
     const router = useRouter()
     const { pathname } = router;
+
+    const { data: session } = useSession()
 
 
     const { cartProducts } = useContext(CartContext)
@@ -18,13 +22,13 @@ const Header = () => {
     return <>
         <header className="bg-white border-b  border-primary border-opacity-30  sticky top-0 z-40 w-full  ">
             <div className="mx-auto flex h-16 max-w-screen-2xl items-center gap-8 px-4 sm:px-6 lg:px-8 text-xl">
-                <Link className="flex text-primary items-center gap-1" href="/">
-                    <span className="sr-only">Home</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                        <path d="M5.223 2.25c-.497 0-.974.198-1.325.55l-1.3 1.298A3.75 3.75 0 0 0 7.5 9.75c.627.47 1.406.75 2.25.75.844 0 1.624-.28 2.25-.75.626.47 1.406.75 2.25.75.844 0 1.623-.28 2.25-.75a3.75 3.75 0 0 0 4.902-5.652l-1.3-1.299a1.875 1.875 0 0 0-1.325-.549H5.223Z" />
-                        <path fillRule="evenodd" d="M3 20.25v-8.755c1.42.674 3.08.673 4.5 0A5.234 5.234 0 0 0 9.75 12c.804 0 1.568-.182 2.25-.506a5.234 5.234 0 0 0 2.25.506c.804 0 1.567-.182 2.25-.506 1.42.674 3.08.675 4.5.001v8.755h.75a.75.75 0 0 1 0 1.5H2.25a.75.75 0 0 1 0-1.5H3Zm3-6a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-.75.75h-3a.75.75 0 0 1-.75-.75v-3Zm8.25-.75a.75.75 0 0 0-.75.75v5.25c0 .414.336.75.75.75h3a.75.75 0 0 0 .75-.75v-5.25a.75.75 0 0 0-.75-.75h-3Z" clipRule="evenodd" />
+                <Link className="flex gap-1 items-center text-text font-medium text-lg hover:text-primary " href="/">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z" />
                     </svg>
-                    /My Shop
+                    <span> / MyShop</span>
+
                 </Link>
 
                 <div className="flex flex-1 items-center justify-end md:justify-between">
@@ -43,12 +47,22 @@ const Header = () => {
 
                     <div className="flex items-center gap-4">
                         <div className="sm:flex sm:gap-4 items-center">
-                            <Link
-                                className=" px-4 py-1 text-sm font-medium transition border-r border-primary"
-                                href="#"
-                            >
-                                Account
-                            </Link>
+                            {session ? (
+                                <Link
+                                    href={'/account'}
+                                    className="sm:flex sm:gap-2 border-r border-primary pr-4">
+                                    <div class="h-9 w-9">
+                                        <img class="h-full w-full rounded-full object-cover object-center" src={session.user.image} alt={session.user.email} />
+                                    </div>
+                                </Link>
+                            ) : (
+                                <Link
+                                    className=" px-4 py-1 text-sm font-medium transition border-r border-primary"
+                                    href={'/account'}
+                                >
+                                    Account
+                                </Link>
+                            )}
 
                             <Link
                                 className=" group rounded-md  text-sm flex items-center font-medium  transition  p-2 "

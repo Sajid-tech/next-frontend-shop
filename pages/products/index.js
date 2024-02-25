@@ -2,8 +2,10 @@
 "use client"
 import Spinner from "@/components/Spinner";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { CartContext } from "@/utils/CartContext";
+import toast from "react-hot-toast";
 
 
 
@@ -15,10 +17,11 @@ const formatPrice = (price) => {
 const Products = () => {
 
 
-
+    const { addProduct } = useContext(CartContext)
 
     const [loading, setLoading] = useState(true);
     const [getProduct, setGetProduct] = useState([]);
+    const [searchQuery, setSearchQuery] = useState("")
 
 
 
@@ -50,6 +53,13 @@ const Products = () => {
         }, 2000);
     }, []);
 
+    const filteredProducts = getProduct.filter(product =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+
+    // for search query 
+
 
 
 
@@ -66,17 +76,19 @@ const Products = () => {
                     <input
                         type="text"
                         placeholder="Search products"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
 
                         className="mb-4 px-4 py-2 rounded-lg border border-gray-300 w-full" // Increased the input size
                     />
 
-                    {getProduct.length === 0 ? ( // Display a message when no matching searches
+                    {filteredProducts.length === 0 ? ( // Display a message when no matching searches
                         <p className="text-center text-gray-600">
                             No matching products found.
                         </p>
                     ) : (
                         <div className="grid grid-cols-2 gap-x-3 md:gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 xl:gap-x-8 px-2">
-                            {getProduct.map((product) => (
+                            {filteredProducts.map((product) => (
                                 <div key={product._id}>
                                     <div className="group block overflow-hidden border border-accent rounded-xl border-opacity-10">
                                         <div className="">
@@ -106,7 +118,12 @@ const Products = () => {
                                                     </p>
 
                                                     <div className="col-span-12 text-center w-full mt-3">
-                                                        <button className="disabled block rounded bg-secondary px-5 py-3 text-md text-text w-full transition hover:bg-purple-300"
+                                                        <button
+                                                            onClick={() => {
+                                                                addProduct(product._id)
+                                                                toast.success("Item added to cart!");
+                                                            }}
+                                                            className="disabled block rounded bg-secondary px-5 py-3 text-md text-text w-full transition hover:bg-purple-300"
                                                         >
                                                             Add to cart
                                                         </button>
