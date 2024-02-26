@@ -11,7 +11,7 @@ import toast from 'react-hot-toast';
 
 const Banner = () => {
     const [product, setProduct] = useState(null);
-
+    const [isLoading, setIsLoading] = useState(true);
     const { addProduct } = useContext(CartContext)
     function addItemToCart() {
         addProduct(product._id);
@@ -37,8 +37,42 @@ const Banner = () => {
         fetchProduct();
     }, []);
 
-    if (product) {
+    useEffect(() => {
+        // Simulate data loading delay for 2 seconds (remove this in actual implementation)
+        const timeout = setTimeout(() => {
+            setIsLoading(false);
+        }, 2000);
+
+        // Clean up timeout
+        return () => clearTimeout(timeout);
+    }, []);
+
+
+    if (isLoading) {
+        // Skeleton Loading UI while data is being fetched
         return (
+            <div className="bg-gray-200 p-4 rounded-lg mt-10 lg:mt-0">
+                <div className="flex items-center">
+                    <div className="ml-4">
+                        <div className="animate-pulse w-40 h-4 bg-gray-400 mb-2"></div>
+                        <div className="animate-pulse w-32 h-4 bg-gray-400"></div>
+                    </div>
+                </div>
+                <div className="mt-4">
+                    <div className="animate-pulse w-full h-4 bg-gray-400 mb-2"></div>
+                    <div className="animate-pulse w-full h-4 bg-gray-400 mb-2"></div>
+                    <div className="animate-pulse w-full h-4 bg-gray-400"></div>
+                    <div className="animate-pulse mt-4 w-full h-48 bg-gray-400 rounded-lg"></div>
+                </div>
+                <div className="mt-4">
+                    <div className="animate-pulse w-20 h-4 bg-gray-400"></div>
+                </div>
+            </div>
+        );
+    }
+
+    if (product) {
+        return <>
             <div className="relative overflow-hidden bg-background my-14 md:my-10">
                 <div className="lg:py-40 min-h-[650px]">
                     <div className="relative mx-auto sm:static sm:px-6 lg:px-8">
@@ -101,7 +135,7 @@ const Banner = () => {
                     </div>
                 </div>
             </div>
-        );
+        </>;
     }
     return null;
 }

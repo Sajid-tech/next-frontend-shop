@@ -15,9 +15,7 @@ const formatPrice = (price) => {
 const Products = () => {
 
     const { addProduct } = useContext(CartContext)
-
-
-
+    const [isLoading, setIsLoading] = useState(true);
     const [getProduct, setGetProduct] = useState([]);
 
 
@@ -46,6 +44,37 @@ const Products = () => {
         fetchProduct();
         // console.log("getset", getProduct)
     }, []);
+
+    useEffect(() => {
+        // Simulate data loading delay for 2 seconds (remove this in actual implementation)
+        const timeout = setTimeout(() => {
+            setIsLoading(false);
+        }, 2000);
+
+        // Clean up timeout
+        return () => clearTimeout(timeout);
+    }, []);
+
+    if (isLoading) {
+        return (
+            <div className="bg-gray-200 p-4 rounded-lg mt-10 lg:mt-0">
+                <div className="grid grid-cols-1 gap-y-8 sm:grid-cols-2 lg:grid-cols-5">
+                    {[...Array(5)].map((_, index) => (
+                        <div key={index} className="bg-white border border-gray-300 rounded-xl shadow">
+                            <div className="animate-pulse p-4">
+                                <div className="h-40 bg-gray-300 rounded-lg"></div>
+                                <div className="mt-4 space-y-2">
+                                    <div className="h-4 bg-gray-300 rounded"></div>
+                                    <div className="h-4 bg-gray-300 rounded"></div>
+                                    <div className="h-4 bg-gray-300 rounded"></div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    }
 
 
     return (

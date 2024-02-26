@@ -4,13 +4,11 @@ import { CartContext } from '@/utils/CartContext'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { RxAvatar } from "react-icons/rx";
 
 const Header = () => {
 
-    // const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-    // const [currentPath, setCurrentPath] = useState("");
 
     const router = useRouter()
     const { pathname } = router;
@@ -20,14 +18,11 @@ const Header = () => {
 
     const { cartProducts } = useContext(CartContext)
 
-    // useEffect(() => {
-    //     // Update the currentPath state on client side
-    //     setCurrentPath(window.location.pathname);
-    // }, []);
 
-    // const toggleMobileNav = () => {
-    //     setIsMobileNavOpen(!isMobileNavOpen);
-    // };
+
+
+
+
 
 
 
@@ -103,87 +98,7 @@ const Header = () => {
                             </Link>
                         </div>
 
-                        {/* Mobile navigation button */}
-                        {/* <div className="block mr-0 md:hidden">
-                            <button
-                                onClick={toggleMobileNav}
-                                className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75"
-                            >
-                                {isMobileNavOpen ? (
-                                    // X icon for close
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-5 w-5"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M6 18L18 6M6 6l12 12"
-                                        />
-                                    </svg>
-                                ) : (
-                                    // Menu icon for open
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-5 w-5"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M4 6h16M4 12h16M4 18h16"
-                                        />
-                                    </svg>
-                                )}
-                            </button>
-                        </div>
 
-                        {isMobileNavOpen && (
-                            <div className="md:hidden absolute top-24 right-0 bg-white border border-zinc-200 rounded shadow-lg p-6 text-lg ">
-                                <nav aria-label="Global">
-                                    <ul className="flex flex-col items-start gap-6 text-md">
-                                        <li>
-                                            <Link className={`text-accent transition hover:text-accent/75 ${pathname === '/' ? active : inActive} `} href="/"
-                                                onClick={toggleMobileNav}
-                                            >
-                                                Home
-                                            </Link>
-                                        </li>
-
-                                        <li>
-                                            <Link className={`text-accent transition hover:text-accent/75 ${pathname === '/products' ? active : inActive}`} href="/products"
-                                                onClick={toggleMobileNav}
-                                            >
-                                                All Products
-                                            </Link>
-                                        </li>
-
-                                        <li>
-                                            <Link className={`text-accent transition hover:text-accent/75 ${pathname === '/categories' ? active : inActive}`} href="/categories"
-                                                onClick={toggleMobileNav}
-                                            >
-                                                Categories
-                                            </Link>
-                                        </li>
-
-                                        <li>
-                                            {session && (
-                                                <button onClick={() => signOut()}>logout</button>
-                                            )}
-                                        </li>
-
-
-                                    </ul>
-                                </nav>
-                            </div>
-                        )} */}
 
                     </div>
                 </div>
