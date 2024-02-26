@@ -53,6 +53,7 @@ const Cart = () => {
 
 
 
+
     let total = 0;
     for (const productId of cartProducts) {
         const price = products.find(p => p._id === productId)?.price || 0;
@@ -159,8 +160,8 @@ const Cart = () => {
                                     <button onClick={deleteCart} className="text-red-500 hover:text-red-700 focus:outline-none">Clear Cart</button>
                                     <div>
                                         <p>Subtotal: &#8377; {formatPrice(total)}</p>
-                                        <p>VAT: &#8377; {formatPrice(total / 1000)}</p>
-                                        <p className="font-bold">Total: &#8377; {formatPrice(total + total / 1000)}</p>
+                                        <strike>VAT: &#8377; {formatPrice(total / 1000)}</strike>
+                                        <p className="font-bold">Total: &#8377; {formatPrice(total)}</p>
                                     </div>
                                 </div>
                                 <div className="flex justify-end mt-8">
