@@ -3,7 +3,7 @@
 import React, { useContext } from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'next/navigation';
+import { useRouter } from 'next/router'
 import { CartContext } from '@/utils/CartContext';
 import toast from 'react-hot-toast';
 
@@ -25,9 +25,10 @@ const ProductPage = () => {
 
     const { addProduct } = useContext(CartContext)
 
-    const [product, setProduct] = useState([]);
-    const params = useParams()
-    const { id } = params
+    const [product, setProduct] = useState(null);
+
+    const router = useRouter()
+    const { id } = router.query
 
 
 
