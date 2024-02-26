@@ -31,21 +31,15 @@ const Banner = () => {
                 setProduct(productById);
             } catch (error) {
                 console.error('Error fetching product:', error);
+            } finally {
+                setIsLoading(false); // Set loading to false after fetching products
             }
         };
 
         fetchProduct();
     }, []);
 
-    useEffect(() => {
-        // Simulate data loading delay for 2 seconds (remove this in actual implementation)
-        const timeout = setTimeout(() => {
-            setIsLoading(false);
-        }, 2000);
 
-        // Clean up timeout
-        return () => clearTimeout(timeout);
-    }, []);
 
 
     if (isLoading) {
