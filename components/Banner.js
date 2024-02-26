@@ -72,7 +72,7 @@ const Banner = () => {
                                         className="mt-6 inline-block rounded-md border border-transparent bg-primary px-6 py-3 text-center font-medium text-white hover:text-accent" >
                                         Add to cart
                                     </button>
-                                    <Link href="/" className="mt-6 inline-block rounded-md  bg-transparent border border-accent px-6 py-3 text-center font-medium text-accent hover:text-primary hover:border-primary">
+                                    <Link href={"/products"} className="mt-6 inline-block rounded-md  bg-transparent border border-accent px-6 py-3 text-center font-medium text-accent hover:text-primary hover:border-primary">
                                         All Products
                                     </Link>
                                 </div>
