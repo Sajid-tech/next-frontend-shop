@@ -25,7 +25,7 @@ const ProductPage = () => {
 
     const { addProduct } = useContext(CartContext)
 
-    const [product, setProduct] = useState(null);
+    const [product, setProduct] = useState([]);
     const params = useParams()
     const { id } = params
 
