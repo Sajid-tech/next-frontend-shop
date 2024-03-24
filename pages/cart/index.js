@@ -105,7 +105,7 @@ const Cart = () => {
 
     if (session) {
         return (
-            <section className="flex justify-between max-md:flex-col space-x-4 ">
+            <section className="flex justify-between max-md:flex-col space-x-4 mt-8 md:mt-8  lg:mt-0">
                 <div className=" md:w-2/3 px-6  lg:px-16">
                     <div className='mt-6  md:mt-6 ' >
                         <header className="text-center  flex justify-between w-full">
