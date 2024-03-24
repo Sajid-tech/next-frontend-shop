@@ -19,6 +19,9 @@ export default function App({ Component, pageProps }) {
         <main className={`${inter.className}`}>
           <Head>
             <title>My Shop</title>
+            <meta
+              name="description"
+              content="My Shop Website offers seamless browsing of products, complete with a user-friendly cart feature. Secure payments through Stripe ensure hassle-free transactions. Enjoy a personalized experience with login capabilities."></meta>
           </Head>
           <Header />
           <div className="min-h-screen max-w-screen-2xl mx-auto">
