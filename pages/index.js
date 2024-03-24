@@ -1,10 +1,12 @@
-import Banner from "@/components/Banner";
-import Collection from "@/components/Collection";
-import Footer from "@/components/Footer";
-import Newsletter from "@/components/Newsletter";
-import Products from "@/components/Products";
+import dynamic from "next/dynamic";
 
-import Image from "next/image";
+const Banner = dynamic(() => import('@/components/Banner'))
+const Collection = dynamic(() => import('@/components/Collection'))
+const Footer = dynamic(() => import('@/components/Footer'))
+const Newsletter = dynamic(() => import('@/components/Newsletter'))
+const Products = dynamic(() => import('@/components/Products'))
+
+
 
 
 export default function Home() {

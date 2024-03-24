@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client"
 import React, { useContext } from 'react'
 import { useState, useEffect } from 'react';
@@ -6,6 +5,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import { CartContext } from '@/utils/CartContext';
 import toast from 'react-hot-toast';
+import Image from 'next/image';
 
 // Utility function to format price with a comma for thousands
 const formatPrice = (price) => {
@@ -83,16 +83,20 @@ const Products = () => {
                             <div className="group block overflow-hidden border border-accent rounded-xl border-opacity-10">
                                 <div className="p-1">
                                     <div className="relative h-[300px] sm:h-[300px]">
-                                        <img
+                                        <Image
                                             src={product.images[0]}
                                             alt=""
-                                            className="absolute inset-0 h-full w-full object-contain opacity-100 group-hover:opacity-0"
+                                            layout="fill"
+                                            objectFit="cover"
+                                            className="absolute inset-0 opacity-100 group-hover:opacity-0 transition-opacity"
                                         />
 
-                                        <img
+                                        <Image
                                             src={product.images[1]}
                                             alt=""
-                                            className="absolute inset-0 h-full w-full object-contain opacity-0 group-hover:opacity-100"
+                                            layout="fill"
+                                            objectFit="cover"
+                                            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
                                         />
                                     </div>
 

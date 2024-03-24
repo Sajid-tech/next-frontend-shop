@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 "use client"
 import { CartContext } from '@/utils/CartContext'
 import { useSession } from 'next-auth/react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useContext } from 'react'
@@ -70,7 +70,9 @@ const Header = () => {
                                 href={'/account'}
                                 className="sm:flex sm:gap-2  border-r border-primary pr-2">
                                 <div class="h-9 w-9">
-                                    <img class="h-full w-full rounded-full object-cover object-center" src={session.user.image} alt={session.user.email} />
+
+                                    <Image className="h-full w-full rounded-full object-cover object-center" src={session.user.image} alt={session.user.email} width={36} height={36} />
+
                                 </div>
                             </Link>
                         ) : (
