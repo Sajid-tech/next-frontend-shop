@@ -1,10 +1,10 @@
-/* eslint-disable @next/next/no-img-element */
 "use client"
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import { CartContext } from '@/utils/CartContext';
 import toast from 'react-hot-toast';
+import Image from 'next/image';
 
 
 
@@ -86,10 +86,12 @@ const Banner = () => {
                                 <div className="lg:hidden relative ">
                                     <div className="grid grid-cols-1 gap-6">
                                         <div className="w-72 h-80 overflow-hidden rounded-lg border border-secondary transform rotate-3 translate-x-4 hover:-rotate-6 hover:translate-x-8 transition-transform duration-300 ease-in-out">
-                                            <img src={product?.images[0]} alt="" className="h-full w-full object-cover object-center" />
+
+                                            <Image src={product?.images[0]} alt="" width={288} height={320} objectFit="cover" />
                                         </div>
                                         <div className="w-72 h-80 overflow-hidden rounded-lg border border-secondary transform -rotate-2 translate-x-2 hover:rotate-4 hover:translate-x-4 transition-transform duration-300 ease-in-out">
-                                            <img src={product?.images[1]} alt="" className="h-full w-full object-cover object-center" />
+
+                                            <Image src={product?.images[1]} alt="" width={288} height={320} objectFit="cover" />
                                         </div>
                                     </div>
                                 </div>
@@ -109,18 +111,22 @@ const Banner = () => {
                                 <div className="flex items-center space-x-6 lg:space-x-8">
                                     <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                                         <div className="w-72 h-80 overflow-hidden rounded-lg border border-secondary transform rotate-3 translate-x-4 hover:-rotate-6 hover:translate-x-8 transition-transform duration-300 ease-in-out">
-                                            <img src={product?.images[0]} alt="" className="h-full w-full object-cover object-center" />
+
+                                            <Image src={product?.images[0]} alt="" width={288} height={320} objectFit="cover" />
                                         </div>
                                         <div className="w-72 h-80 overflow-hidden rounded-lg border border-secondary transform -rotate-2 translate-x-2 hover:rotate-4 hover:translate-x-4 transition-transform duration-300 ease-in-out">
-                                            <img src={product?.images[1]} alt="" className="h-full w-full object-cover object-center" />
+
+                                            <Image src={product?.images[1]} alt="" width={288} height={320} objectFit="cover" />
                                         </div>
                                     </div>
                                     <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                                         <div className="w-72 h-80 overflow-hidden rounded-lg border border-secondary transform rotate-1 translate-x-3 hover:-rotate-2 hover:translate-x-4 transition-transform duration-300 ease-in-out">
-                                            <img src={product?.images[2]} alt="" className="h-full w-full object-cover object-center" />
+
+                                            <Image src={product?.images[2]} alt="" width={288} height={320} objectFit="cover" />
                                         </div>
                                         <div className="w-72 h-80 overflow-hidden rounded-lg border border-secondary transform -rotate-4 translate-x-2 hover:rotate-8 hover:translate-x-3 transition-transform duration-300 ease-in-out">
-                                            <img src={product?.images[3]} alt="" className="h-full w-full object-cover object-center" />
+
+                                            <Image src={product?.images[3]} alt="" width={288} height={320} objectFit="cover" />
                                         </div>
                                     </div>
                                 </div>

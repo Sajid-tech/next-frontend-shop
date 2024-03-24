@@ -1,8 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
 "use client"
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 
 
@@ -77,9 +77,11 @@ const Collection = () => {
                                     <ul className="grid grid-cols-2 gap-4">
                                         <li>
                                             <div className="block group">
-                                                <img
+                                                <Image
                                                     src={product.images[0]}
                                                     alt=""
+                                                    width={400}
+                                                    height={400}
                                                     className="object-cover w-full rounded aspect-square"
                                                 />
                                             </div>
@@ -87,9 +89,11 @@ const Collection = () => {
 
                                         <li>
                                             <div className="block group">
-                                                <img
+                                                <Image
                                                     src={product.images[1]}
                                                     alt=""
+                                                    width={400}
+                                                    height={400}
                                                     className="object-cover w-full rounded aspect-square"
                                                 />
                                             </div>

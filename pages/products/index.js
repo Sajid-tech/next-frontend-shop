@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client"
 import Spinner from "@/components/Spinner";
 import Link from "next/link";
@@ -6,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { CartContext } from "@/utils/CartContext";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 
 
@@ -18,7 +18,6 @@ const Products = () => {
 
 
     const { addProduct } = useContext(CartContext)
-
     const [loading, setLoading] = useState(true);
     const [getProduct, setGetProduct] = useState([]);
     const [searchQuery, setSearchQuery] = useState("")
@@ -57,14 +56,6 @@ const Products = () => {
         product.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-
-    // for search query 
-
-
-
-
-
-
     return (
         <div className="flex justify-center min-h-screen w-full">
             {loading ? (
@@ -93,15 +84,19 @@ const Products = () => {
                                     <div className="group block overflow-hidden border border-accent rounded-xl border-opacity-10">
                                         <div className="">
                                             <div className="relative md:h-[300px] h-[200px]">
-                                                <img
+                                                <Image
                                                     src={product.images[0]}
                                                     alt=""
-                                                    className="absolute inset-0 h-full w-full object-contain opacity-100 group-hover:opacity-0"
+                                                    layout="fill"
+                                                    objectFit="contain"
+                                                    className="absolute inset-0 opacity-100 group-hover:opacity-0"
                                                 />
-                                                <img
+                                                <Image
                                                     src={product.images[1]}
                                                     alt=""
-                                                    className="absolute inset-0 h-full w-full object-contain opacity-0 group-hover:opacity-100"
+                                                    layout="fill"
+                                                    objectFit="contain"
+                                                    className="absolute inset-0 opacity-0 group-hover:opacity-100"
                                                 />
                                             </div>
 
