@@ -1,6 +1,4 @@
-Sure, I can expand the README file with more details, including sections for prerequisites, environment variables, testing, and a more detailed description of the project.
 
----
 
 # Next Frontend Shop
 
