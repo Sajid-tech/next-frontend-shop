@@ -19,13 +19,6 @@ const Header = () => {
     const { cartProducts } = useContext(CartContext)
 
 
-
-
-
-
-
-
-
     return <>
 
 
@@ -108,7 +101,7 @@ const Header = () => {
         </header >
 
         <header className="md:hidden w-full flex justify-around items-center my-3 border-b fixed top-12 bg-gray-200 z-50">
-            <div className="inline-flex gap-8 p-1">
+            <div className="inline-flex gap-5 p-1">
                 <Link
                     href={'/'}
                     className={`inline-flex items-center gap-2 rounded-md px-4 py-2 text-md text-accent hover:text-gray-700 focus:relative ${pathname === ('/') ? 'text-primary' : ""} `}
