@@ -1,5 +1,3 @@
-//import neccesasry module and models
-
 import mongooseConnect from "@/lib/mongoose";
 import { Order } from "@/models/Order";
 import Product from "@/models/Product";
@@ -60,8 +58,16 @@ export default async function handler(req, res) {
 
     // create a new order document in the database
     const orderDoc = await Order.create({
-        line_items, email, name, address, city, country, zip, paid: false
-    })
+        line_items,
+
+        email,
+        name,
+        address,
+        city,
+        country,
+        zip,
+        paid: false,
+    });
 
 
     // create a new stripe checkout session
@@ -69,14 +75,18 @@ export default async function handler(req, res) {
         line_items,
         mode: 'payment',
         customer_email: email,
+        billing_address_collection: 'required',
         success_url: process.env.SUCCESS_URL + '/cart?success=1',
         cancel_url: process.env.SUCCESS_URL + '/cart?canceled=1',
         metadata: { orderId: orderDoc._id.toString(), test: 'ok' }
-    })
+    });
+
 
     // respond with url generated for the stripe checkout session
     res.json({
         url: session.url,
     })
-
 }
+
+
+
